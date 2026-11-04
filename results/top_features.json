@@ -1,0 +1,166 @@
+{
+  "positifs": [
+    {
+      "mot": "excellent",
+      "poids": 8.9926
+    },
+    {
+      "mot": "magnifique",
+      "poids": 8.2479
+    },
+    {
+      "mot": "superbe",
+      "poids": 6.1584
+    },
+    {
+      "mot": "très bon",
+      "poids": 5.7617
+    },
+    {
+      "mot": "bon film",
+      "poids": 5.7464
+    },
+    {
+      "mot": "parfaitement",
+      "poids": 4.9771
+    },
+    {
+      "mot": "bon",
+      "poids": 4.6288
+    },
+    {
+      "mot": "parfait",
+      "poids": 4.6094
+    },
+    {
+      "mot": "a voir",
+      "poids": 4.5476
+    },
+    {
+      "mot": "voir",
+      "poids": 4.3089
+    },
+    {
+      "mot": "génial",
+      "poids": 4.2072
+    },
+    {
+      "mot": "beau film",
+      "poids": 4.109
+    },
+    {
+      "mot": "bravo",
+      "poids": 4.049
+    },
+    {
+      "mot": "beau",
+      "poids": 4.0146
+    },
+    {
+      "mot": "et",
+      "poids": 4.0107
+    },
+    {
+      "mot": "adoré",
+      "poids": 3.9872
+    },
+    {
+      "mot": "sublime",
+      "poids": 3.8788
+    },
+    {
+      "mot": "réussite",
+      "poids": 3.863
+    },
+    {
+      "mot": "excellent film",
+      "poids": 3.8098
+    },
+    {
+      "mot": "efficace",
+      "poids": 3.7499
+    }
+  ],
+  "negatifs": [
+    {
+      "mot": "mauvais",
+      "poids": -8.9683
+    },
+    {
+      "mot": "ennuyeux",
+      "poids": -7.7257
+    },
+    {
+      "mot": "intérêt",
+      "poids": -7.6395
+    },
+    {
+      "mot": "nul",
+      "poids": -6.5596
+    },
+    {
+      "mot": "navet",
+      "poids": -6.3399
+    },
+    {
+      "mot": "rien",
+      "poids": -6.2092
+    },
+    {
+      "mot": "ridicule",
+      "poids": -5.793
+    },
+    {
+      "mot": "ennui",
+      "poids": -5.7725
+    },
+    {
+      "mot": "mal",
+      "poids": -5.7376
+    },
+    {
+      "mot": "décevant",
+      "poids": -5.6652
+    },
+    {
+      "mot": "déception",
+      "poids": -5.3955
+    },
+    {
+      "mot": "trop",
+      "poids": -5.1968
+    },
+    {
+      "mot": "éviter",
+      "poids": -5.196
+    },
+    {
+      "mot": "pas",
+      "poids": -5.1785
+    },
+    {
+      "mot": "dommage",
+      "poids": -4.8473
+    },
+    {
+      "mot": "plat",
+      "poids": -4.8105
+    },
+    {
+      "mot": "chose",
+      "poids": -4.7153
+    },
+    {
+      "mot": "pire",
+      "poids": -4.5509
+    },
+    {
+      "mot": "manque",
+      "poids": -4.4244
+    },
+    {
+      "mot": "faire",
+      "poids": -3.9945
+    }
+  ]
+}

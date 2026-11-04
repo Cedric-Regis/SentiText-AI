@@ -1,0 +1,9 @@
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+tensorflow-cpu==2.18.0
+streamlit==1.40.2
+matplotlib==3.9.2
+joblib==1.4.2
+datasets==3.1.0
+pytest==8.3.3
