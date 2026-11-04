@@ -1,0 +1,166 @@
+{
+  "positifs": [
+    {
+      "mot": "très bon",
+      "poids": 12.1105
+    },
+    {
+      "mot": "excellent",
+      "poids": 12.0793
+    },
+    {
+      "mot": "magnifique",
+      "poids": 9.7212
+    },
+    {
+      "mot": "beau",
+      "poids": 8.863
+    },
+    {
+      "mot": "parfaitement",
+      "poids": 8.8464
+    },
+    {
+      "mot": "superbe",
+      "poids": 8.5612
+    },
+    {
+      "mot": "parfait",
+      "poids": 7.6193
+    },
+    {
+      "mot": "beau film",
+      "poids": 7.2576
+    },
+    {
+      "mot": "sublime",
+      "poids": 6.9072
+    },
+    {
+      "mot": "très bien",
+      "poids": 6.8721
+    },
+    {
+      "mot": "réussite",
+      "poids": 6.8396
+    },
+    {
+      "mot": "plaisir",
+      "poids": 6.7657
+    },
+    {
+      "mot": "super",
+      "poids": 6.7402
+    },
+    {
+      "mot": "un très",
+      "poids": 6.7183
+    },
+    {
+      "mot": "bon",
+      "poids": 6.4835
+    },
+    {
+      "mot": "adoré",
+      "poids": 6.4246
+    },
+    {
+      "mot": "très",
+      "poids": 6.287
+    },
+    {
+      "mot": "un des",
+      "poids": 6.2348
+    },
+    {
+      "mot": "excellent film",
+      "poids": 6.2214
+    },
+    {
+      "mot": "le meilleur",
+      "poids": 6.1434
+    }
+  ],
+  "negatifs": [
+    {
+      "mot": "mauvais",
+      "poids": -14.1112
+    },
+    {
+      "mot": "intérêt",
+      "poids": -13.2156
+    },
+    {
+      "mot": "ennuyeux",
+      "poids": -12.3244
+    },
+    {
+      "mot": "ridicule",
+      "poids": -11.0972
+    },
+    {
+      "mot": "navet",
+      "poids": -10.5684
+    },
+    {
+      "mot": "ennui",
+      "poids": -9.7346
+    },
+    {
+      "mot": "pas",
+      "poids": -9.2867
+    },
+    {
+      "mot": "rien",
+      "poids": -9.0687
+    },
+    {
+      "mot": "pas très",
+      "poids": -8.8675
+    },
+    {
+      "mot": "décevant",
+      "poids": -8.8203
+    },
+    {
+      "mot": "éviter",
+      "poids": -8.2861
+    },
+    {
+      "mot": "nul",
+      "poids": -8.2077
+    },
+    {
+      "mot": "mal",
+      "poids": -8.2026
+    },
+    {
+      "mot": "déception",
+      "poids": -7.6508
+    },
+    {
+      "mot": "manque",
+      "poids": -7.6036
+    },
+    {
+      "mot": "plat",
+      "poids": -7.0918
+    },
+    {
+      "mot": "clichés",
+      "poids": -6.8215
+    },
+    {
+      "mot": "dommage",
+      "poids": -6.7728
+    },
+    {
+      "mot": "moyen",
+      "poids": -6.5833
+    },
+    {
+      "mot": "raté",
+      "poids": -6.3674
+    }
+  ]
+}

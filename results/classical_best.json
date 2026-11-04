@@ -1,0 +1,24 @@
+{
+  "name": "svm",
+  "selected_on": "validation F1",
+  "models": {
+    "naive_bayes": {
+      "hyperparam": "alpha",
+      "valeur": 0.5,
+      "val_f1": 0.9099,
+      "train_time_s": 2.26
+    },
+    "logistic_regression": {
+      "hyperparam": "C",
+      "valeur": 20.0,
+      "val_f1": 0.9154,
+      "train_time_s": 4.35
+    },
+    "svm": {
+      "hyperparam": "C",
+      "valeur": 1.0,
+      "val_f1": 0.9193,
+      "train_time_s": 3.21
+    }
+  }
+}
