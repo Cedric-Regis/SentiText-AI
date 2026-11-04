@@ -70,7 +70,7 @@ def main():
     print(f"\nFuites retirées du train : {avant - len(splits['train'])}")
 
     tailles = {"train": config.N_TRAIN, "validation": config.N_VAL, "test": config.N_TEST}
-    chemins = {"train": config.TRAIN_CSV, "validation": config.VAL_CSV, "test": config.TEST_CSV}
+    chemins = {"train": config.TRAIN_CSV, "validation": config.VALIDATION_CSV, "test": config.TEST_CSV}
     resume = {}
     for nom, df in splits.items():
         ech = echantillonner(df, tailles[nom])
@@ -80,7 +80,7 @@ def main():
                                    ech["label"].value_counts().sort_index().items()}}
         print(f"{nom}: {len(ech)} textes -> {chemins[nom].name}")
 
-    config.DATA_SUMMARY_FILE.write_text(
+    config.DATA_SUMMARY_PATH.write_text(
         json.dumps(resume, indent=2, ensure_ascii=False), encoding="utf-8")
 
     plt.figure(figsize=(8, 4))
@@ -89,7 +89,7 @@ def main():
     plt.ylabel("Nombre de critiques")
     plt.title("Distribution des longueurs - train")
     plt.tight_layout()
-    plt.savefig(config.REVIEW_LENGTH_HIST, dpi=120)
+    plt.savefig(config.REVIEW_LENGTH_HIST_PATH, dpi=120)
     plt.close()
 
 

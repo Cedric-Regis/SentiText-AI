@@ -13,10 +13,10 @@ POSITIF = "ce film est un chef-d'œuvre, j'ai adoré"
 NEGATIF = "nul, ennuyeux, une perte de temps"
 
 PKL = {
-    "naive_bayes": config.NAIVE_BAYES_FILE,
-    "logistic_regression": config.LOGREG_FILE,
-    "svm": config.SVM_FILE,
-    "classical_best": config.CLASSICAL_BEST_FILE,
+    "naive_bayes": config.NAIVE_BAYES_PATH,
+    "logistic_regression": config.LOGISTIC_REGRESSION_PATH,
+    "svm": config.SVM_PATH,
+    "classical_best": config.CLASSICAL_BEST_PATH,
 }
 
 
@@ -34,10 +34,10 @@ def test_modele_classique(nom):
 
 
 def test_lstm():
-    if not config.LSTM_FILE.exists():
-        pytest.skip(f"{config.LSTM_FILE.name} absent")
+    if not config.LSTM_PATH.exists():
+        pytest.skip(f"{config.LSTM_PATH.name} absent")
     keras = pytest.importorskip("keras")
-    modele = keras.models.load_model(config.LSTM_FILE)
+    modele = keras.models.load_model(config.LSTM_PATH)
     p_pos = float(modele.predict(np.array([[clean_text(POSITIF)]]), verbose=0)[0][0])
     p_neg = float(modele.predict(np.array([[clean_text(NEGATIF)]]), verbose=0)[0][0])
     assert p_pos >= 0.5
@@ -63,4 +63,4 @@ def test_test_jamais_utilise_pour_regler():
                      train_classical.regler, train_classical.sauver_top_features):
         assert "TEST_CSV" not in inspect.getsource(fonction)
     source_main = inspect.getsource(train_classical.main)
-    assert source_main.index("CLASSICAL_BEST_FILE") < source_main.index("TEST_CSV")
+    assert source_main.index("CLASSICAL_BEST_PATH") < source_main.index("TEST_CSV")

@@ -1,39 +1,33 @@
-"""Prétraitement du texte, commun à l'entraînement et à l'application.
+"""Nettoyage du texte, identique à l'entraînement et dans l'application."""
 
-La fonction clean_text doit rester identique partout : ne la modifier
-qu'après accord des deux membres.
-"""
+import html
 import re
 
-# Balises HTML : <br />, <b>, etc.
 _HTML = re.compile(r"<[^>]+>")
-# URL : http(s)://... ou www....
-_URL = re.compile(r"(https?://\S+|www\.\S+)")
-# Tout ce qui n'est pas lettre (accents inclus), chiffre, espace, ! ou ?
-# Les négations (ne, n', pas, jamais, rien, aucun, plus, sans) sont des
-# mots : elles sont conservées car elles inversent le sentiment.
-_PONCTUATION = re.compile(r"[^\w\s!?]", flags=re.UNICODE)
-_ESPACES = re.compile(r"\s+")
+_URL = re.compile(r"https?://\S+|www\.\S+")
+_APOSTROPHES = re.compile(r"[’‘ʼ`´]")
+# Tout ce qui n'est ni lettre, ni chiffre, ni espace, ni apostrophe, ni ! ou ?
+_PONCTUATION = re.compile(r"[^\w\s'!?]|_")
+_APOSTROPHE_ISOLEE = re.compile(r"(?<!\w)'")
+_ELISION = re.compile(r"(?<=\w)'(?=\w)")
+_EXCLAMATION = re.compile(r"([!?]+)")
 
 
-def clean_text(text: str) -> str:
-    """Nettoie un texte français et renvoie une chaîne propre.
+def clean_text(text) -> str:
+    """Nettoie une critique sans retirer les négations (ne, n', pas, jamais, rien...).
 
-    Étapes : minuscules, suppression des balises HTML et des URL,
-    normalisation des apostrophes, suppression de la ponctuation sauf
-    ! et ? (qui portent du sentiment), espaces multiples réduits.
+    « n'est » devient « n' est » et « super! » devient « super ! » : ces mots,
+    « ! » et « ? » restent ainsi des tokens séparés pour le LSTM.
     """
-    if text is None:
+    if not isinstance(text, str):
         return ""
-    texte = str(text).lower()
-    texte = _HTML.sub(" ", texte)
-    texte = _URL.sub(" ", texte)
-    # Apostrophes typographiques -> apostrophe simple, puis séparation
-    # (n'aime -> n aime) pour garder la négation "n" comme mot à part.
-    texte = texte.replace("’", "'").replace("`", "'").replace("´", "'")
-    texte = texte.replace("'", " ")
-    # Underscore compte comme \w : on le retire aussi
-    texte = texte.replace("_", " ")
-    texte = _PONCTUATION.sub(" ", texte)
-    texte = _ESPACES.sub(" ", texte).strip()
-    return texte
+
+    text = html.unescape(text).lower()
+    text = _HTML.sub(" ", text)
+    text = _URL.sub(" ", text)
+    text = _APOSTROPHES.sub("'", text)
+    text = _PONCTUATION.sub(" ", text)
+    text = _APOSTROPHE_ISOLEE.sub(" ", text)
+    text = _ELISION.sub("' ", text)
+    text = _EXCLAMATION.sub(r" \1 ", text)
+    return " ".join(text.split())

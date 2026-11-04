@@ -1,13 +1,14 @@
 services:
-  app:  # interface Streamlit
+  app: # interface Streamlit
     build: .
     image: sentitext:latest
     ports: ["8501:8501"]
     volumes:
+      - ./data:/app/data
       - ./models:/app/models
       - ./results:/app/results
 
-  prepare:  # profil "train" : lancé à la demande
+  prepare: # profil "train" : lancé à la demande
     image: sentitext:latest
     profiles: ["train"]
     command: python -m src.prepare_data
@@ -33,6 +34,7 @@ services:
       - ./data:/app/data
       - ./models:/app/models
       - ./results:/app/results
+      - hf-cache:/root/.cache/huggingface # sert au mode --quick sans CSV
 
 volumes:
   hf-cache:

@@ -1,30 +1,21 @@
-"""Tests simples de clean_text."""
 from src.preprocessing import clean_text
 
 
-def test_minuscules_et_espaces():
-    assert clean_text("  Ce FILM   est  Super  ") == "ce film est super"
-
-
-def test_html_et_url_supprimes():
-    texte = "Génial <br /> voir https://example.com/film et www.test.fr"
-    resultat = clean_text(texte)
-    assert "<" not in resultat
-    assert "http" not in resultat
-    assert "www" not in resultat
-    assert "génial" in resultat
-
-
-def test_ponctuation_sauf_exclamation_interrogation():
-    resultat = clean_text("Quel film, vraiment... super ! Non ?")
-    assert "," not in resultat
-    assert "." not in resultat
-    assert "!" in resultat
-    assert "?" in resultat
+def test_minuscules_html_et_url():
+    assert clean_text("<b>SUPER</b> film http://exemple.fr www.exemple.fr") == "super film"
 
 
 def test_negations_conservees():
-    resultat = clean_text("Ce n’est pas bon, je n'ai jamais ri, rien de drôle, sans intérêt")
-    mots = resultat.split()
-    for negation in ("pas", "jamais", "rien", "sans", "n"):
-        assert negation in mots
+    resultat = clean_text("Ce n’est pas bon, je ne regarderai jamais, rien, aucun, plus, sans.")
+    for mot in ["n'", "pas", "ne", "jamais", "rien", "aucun", "plus", "sans"]:
+        assert mot in resultat.split()
+
+
+def test_ponctuation_sauf_exclamation_et_question():
+    assert clean_text("Génial,   vraiment... non?! (oui)") == "génial vraiment non ?! oui"
+
+
+def test_texte_vide_ou_invalide():
+    assert clean_text("") == ""
+    assert clean_text("  ... ") == ""
+    assert clean_text(None) == ""

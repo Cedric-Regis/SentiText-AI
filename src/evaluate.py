@@ -40,13 +40,13 @@ def compute_metrics(y_true, y_pred):
 def save_metrics(model_name, metrics):
     """Ajoute ou remplace la clé model_name dans results/metrics.json."""
     existant = {}
-    if config.METRICS_FILE.exists():
+    if config.METRICS_PATH.exists():
         try:
-            existant = json.loads(config.METRICS_FILE.read_text(encoding="utf-8"))
+            existant = json.loads(config.METRICS_PATH.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             existant = {}
     existant[model_name] = metrics
-    config.METRICS_FILE.write_text(
+    config.METRICS_PATH.write_text(
         json.dumps(existant, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
@@ -89,16 +89,16 @@ def _matrice_combinee(noms):
         ax.imshow(plt.imread(chemin))
         ax.axis("off")
     fig.tight_layout()
-    fig.savefig(config.CONFUSION_PNG, dpi=120)
+    fig.savefig(config.CONFUSION_MATRIX_PATH, dpi=120)
     plt.close(fig)
 
 
 def compare_models():
     """Tableau comparatif trié par F1, CSV, barres groupées, matrices réunies."""
-    if not config.METRICS_FILE.exists():
+    if not config.METRICS_PATH.exists():
         print("results/metrics.json introuvable : lancez d'abord les entraînements.")
         return None
-    data = json.loads(config.METRICS_FILE.read_text(encoding="utf-8"))
+    data = json.loads(config.METRICS_PATH.read_text(encoding="utf-8"))
     lignes = {nom: {m: v.get(m) for m in NOMS_METRIQUES}
               for nom, v in data.items() if isinstance(v, dict) and "f1" in v}
     if not lignes:
@@ -107,14 +107,14 @@ def compare_models():
     df = pd.DataFrame(lignes).T.sort_values("f1", ascending=False)
     print("\nComparaison des modèles (jeu de test, triés par F1) :\n")
     print(df.to_string())
-    df.to_csv(config.COMPARISON_CSV, index_label="model")
+    df.to_csv(config.COMPARISON_CSV_PATH, index_label="model")
 
     ax = df.plot(kind="bar", figsize=(9, 5), ylim=(0, 1))
     ax.set_title("Comparaison des modèles (test)")
     ax.set_ylabel("Score")
     plt.xticks(rotation=20)
     plt.tight_layout()
-    plt.savefig(config.COMPARISON_PNG, dpi=120)
+    plt.savefig(config.COMPARISON_PNG_PATH, dpi=120)
     plt.close()
 
     _matrice_combinee(list(df.index))

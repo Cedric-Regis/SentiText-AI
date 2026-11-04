@@ -1,17 +1,11 @@
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
 .pytest_cache/
-
-# Environnements virtuels
 .venv/
 venv/
 
-# Éditeurs / OS
+# Système et éditeurs
+.DS_Store
 .vscode/
 .idea/
-.DS_Store
-
-# Cache Hugging Face local
-.cache/

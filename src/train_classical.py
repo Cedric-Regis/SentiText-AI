@@ -40,11 +40,11 @@ TFIDF_PARAMS = dict(ngram_range=(1, 2), min_df=2, max_df=0.9,
 # Un seul hyperparamètre par modèle, 3 valeurs testées sur la validation
 MODELES = {
     "naive_bayes": {"hyperparam": "alpha", "valeurs": [0.1, 0.5, 1.0],
-                    "fichier": config.NAIVE_BAYES_FILE},
+                    "fichier": config.NAIVE_BAYES_PATH},
     "logistic_regression": {"hyperparam": "C", "valeurs": [1.0, 5.0, 20.0],
-                            "fichier": config.LOGREG_FILE},
+                            "fichier": config.LOGISTIC_REGRESSION_PATH},
     "svm": {"hyperparam": "C", "valeurs": [0.1, 0.5, 1.0],
-            "fichier": config.SVM_FILE},
+            "fichier": config.SVM_PATH},
 }
 
 
@@ -98,14 +98,14 @@ def sauver_top_features(pipe, n=20):
         "negatifs": [{"mot": mots[i], "poids": round(float(coefs[i]), 4)}
                      for i in ordre[:n]],
     }
-    config.TOP_FEATURES_FILE.write_text(
+    config.TOP_FEATURES_PATH.write_text(
         json.dumps(resultat, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 def main():
     print("Chargement : train et validation (le test reste fermé jusqu'à la fin)")
     X_train, y_train = charger(config.TRAIN_CSV)
-    X_val, y_val = charger(config.VAL_CSV)
+    X_val, y_val = charger(config.VALIDATION_CSV)
     print(f"  train={len(X_train)}  validation={len(X_val)}")
 
     pipes, choix = {}, {}
@@ -120,8 +120,8 @@ def main():
 
     # Meilleur modèle : décidé sur la validation, avant de toucher au test
     best = max(choix, key=lambda n: choix[n]["val_f1"])
-    joblib.dump(pipes[best], config.CLASSICAL_BEST_FILE)
-    config.CLASSICAL_BEST_JSON.write_text(
+    joblib.dump(pipes[best], config.CLASSICAL_BEST_PATH)
+    config.CLASSICAL_BEST_JSON_PATH.write_text(
         json.dumps({"name": best, "selected_on": "validation F1", "models": choix},
                    indent=2, ensure_ascii=False), encoding="utf-8")
 
