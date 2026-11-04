@@ -1,0 +1,13 @@
+pandas==2.2.3
+numpy==2.0.2
+scikit-learn==1.6.1
+# tensorflow-cpu n'existe que pour Linux/Windows x86_64 ; ailleurs (ARM) on prend tensorflow.
+tensorflow-cpu==2.18.0; platform_machine == "x86_64"
+tensorflow==2.18.0; platform_machine != "x86_64"
+keras==3.8.0
+streamlit==1.41.1
+matplotlib==3.10.0
+joblib==1.4.2
+datasets==3.2.0
+huggingface-hub==0.27.1
+pytest==8.3.4

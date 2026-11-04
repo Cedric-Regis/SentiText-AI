@@ -1,0 +1,40 @@
+services:
+  app: # interface Streamlit
+    build: .
+    image: sentitext:latest
+    ports: ["8501:8501"]
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./results:/app/results
+
+  prepare: # profil "train" : lancé à la demande
+    image: sentitext:latest
+    profiles: ["train"]
+    command: python -m src.prepare_data
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - hf-cache:/root/.cache/huggingface
+
+  train-classical:
+    image: sentitext:latest
+    profiles: ["train"]
+    command: python -m src.train_classical
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./results:/app/results
+
+  train-lstm:
+    image: sentitext:latest
+    profiles: ["train"]
+    command: python -m src.train_lstm
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./results:/app/results
+      - hf-cache:/root/.cache/huggingface # sert au mode --quick sans CSV
+
+volumes:
+  hf-cache:
